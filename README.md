@@ -1,1 +1,2 @@
 # Easyyyyy
+The best autoclicker.
