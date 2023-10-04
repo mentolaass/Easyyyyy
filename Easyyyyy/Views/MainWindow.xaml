@@ -488,10 +488,10 @@
                 </Border>
 
                 <Label
-                    Canvas.Left="134"
+                    Canvas.Left="133"
                     Canvas.Top="109"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
                     Content="Bind"
                     FontSize="12"
                     Foreground="Gray" />
@@ -663,12 +663,12 @@
                 </Border>
 
                 <Label
-                    Canvas.Left="210"
+                    Canvas.Left="215"
                     Canvas.Top="109"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
                     Content="Click type"
-                    FontSize="14"
+                    FontSize="12"
                     Foreground="Gray" />
 
                 <Label

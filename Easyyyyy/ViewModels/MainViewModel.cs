@@ -236,6 +236,7 @@ namespace Easyyyyy.ViewModels
         {
             get => new RelayCommand(obj =>
             {
+                eToggleMode();
                 runAutoClicker();
             });
         }
@@ -309,6 +310,24 @@ namespace Easyyyyy.ViewModels
                 if (Application.Current != null)
                 {
                     Application.Current.Shutdown();
+                }
+            }).Start();
+        }
+
+        private void eToggleMode()
+        {
+            new Thread(() =>
+            {
+                while(true)
+                {
+                    if (isToggleMode && GetAsyncKeyState(intBindKey))
+                    {
+                        isToggleEnabled = !isToggleEnabled;
+                        // delay
+                        Thread.Sleep(250);
+                    }
+
+                    Thread.Sleep(1);
                 }
             }).Start();
         }
