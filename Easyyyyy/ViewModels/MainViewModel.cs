@@ -162,10 +162,8 @@ namespace Easyyyyy.ViewModels
                 {
                     var eventArgs = (MouseButtonEventArgs)obj;
                     if (eventArgs.ChangedButton == MouseButton.Left)
-                        try
-                        {
+                        if(Application.Current.MainWindow != null)
                             Application.Current.MainWindow.DragMove();
-                        } catch { }
                 }
             });
         }
@@ -292,7 +290,9 @@ namespace Easyyyyy.ViewModels
                     }
 
                     if (isStopped)
+                    {
                         break;
+                    }
 
                     int timeToWait = 0;
                     if (!isEnabledRandom) timeToWait = 1000 / countCPS;
@@ -300,6 +300,8 @@ namespace Easyyyyy.ViewModels
 
                     Thread.Sleep(timeToWait);
                 }
+
+                Application.Current.Shutdown();
             }).Start();
         }
 
