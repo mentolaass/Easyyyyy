@@ -327,6 +327,11 @@ namespace Easyyyyy.ViewModels
                         Thread.Sleep(250);
                     }
 
+                    if (isStopped)
+                    {
+                        break;
+                    }
+
                     Thread.Sleep(1);
                 }
             }).Start();
