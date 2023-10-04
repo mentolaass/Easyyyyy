@@ -149,7 +149,8 @@ namespace Easyyyyy.ViewModels
         {
             get => new RelayCommand(obj =>
             {
-                Application.Current.MainWindow.Close(); isStopped = true;
+                isStopped = true;
+                Application.Current.MainWindow.Close();
             });
         }
 
