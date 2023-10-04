@@ -1,5 +1,7 @@
 ﻿using Easyyyyy.Models;
+using Newtonsoft.Json.Converters;
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows;
@@ -19,6 +21,8 @@ namespace Easyyyyy.ViewModels
             {
                 _isToggleMode = value;
                 onPropertyChanged(nameof(isToggleMode));
+                App.configApplication.isToggleMode = value;
+                App.updateConfig();
             }
         }
 
@@ -41,6 +45,8 @@ namespace Easyyyyy.ViewModels
             {
                 _isDefaultClicks = value;
                 onPropertyChanged(nameof(isDefaultClicks));
+                App.configApplication.isDefaultClicks = value;
+                App.updateConfig();
             }
         }
 
@@ -52,6 +58,8 @@ namespace Easyyyyy.ViewModels
             {
                 _countCPS = value;
                 onPropertyChanged(nameof(countCPS));
+                App.configApplication.countCPS = value;
+                App.updateConfig();
             }
         }
 
@@ -63,6 +71,8 @@ namespace Easyyyyy.ViewModels
             {
                 _isEnabledRandom = value;
                 onPropertyChanged(nameof(isEnabledRandom));
+                App.configApplication.isEnabledRandom = value;
+                App.updateConfig();
             }
         }
 
@@ -82,6 +92,8 @@ namespace Easyyyyy.ViewModels
             {
                 _bindKey = value;
                 onPropertyChanged(nameof(bindKey));
+                App.configApplication.bindKey = value;
+                App.updateConfig();
             }
         }
 
@@ -93,6 +105,8 @@ namespace Easyyyyy.ViewModels
             {
                 _intBindKey = value;
                 onPropertyChanged(nameof(intBindKey));
+                App.configApplication.intBindKey = value;
+                App.updateConfig();
             }
         }
 
@@ -147,7 +161,10 @@ namespace Easyyyyy.ViewModels
                 {
                     var eventArgs = (MouseButtonEventArgs)obj;
                     if (eventArgs.ChangedButton == MouseButton.Left)
-                        Application.Current.MainWindow.DragMove();
+                        try
+                        {
+                            Application.Current.MainWindow.DragMove();
+                        } catch { }
                 }
             });
         }
@@ -209,6 +226,14 @@ namespace Easyyyyy.ViewModels
             });
         }
 
+        public RelayCommand openGithub
+        {
+            get => new RelayCommand(obj =>
+            {
+                Process.Start(new ProcessStartInfo("https://github.com/mentolaass/Easyyyyy"));
+            });
+        }
+
         [DllImport("User32.dll")]
         public static extern bool GetAsyncKeyState(int vKey);
 
@@ -221,6 +246,8 @@ namespace Easyyyyy.ViewModels
             new Thread(() =>
             {
                 var mouse = new Core.Mouse();
+                isDefaultClicks = isDefaultClicks;
+                isToggleMode = isToggleMode;
 
                 while (true)
                 {

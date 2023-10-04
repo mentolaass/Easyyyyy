@@ -353,7 +353,7 @@
 
                     <Border
                         Margin="10,10,10,10"
-                        Background="Gray"
+                        Background="#555555"
                         CornerRadius="20">
 
                         <Border.Style>
@@ -366,7 +366,7 @@
                                                     <ColorAnimation
                                                         FillBehavior="HoldEnd"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        From="Gray"
+                                                        From="#555555"
                                                         To="#008c31"
                                                         Duration="0:0:0:0.2" />
                                                 </Storyboard>
@@ -379,7 +379,7 @@
                                                         FillBehavior="HoldEnd"
                                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                         From="#008c31"
-                                                        To="Gray"
+                                                        To="#555555"
                                                         Duration="0:0:0:0.2" />
                                                 </Storyboard>
                                             </BeginStoryboard>
@@ -506,6 +506,12 @@
                     Background="#050505"
                     CornerRadius="1"
                     Cursor="Hand">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding openGithub}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
 
                     <Border.Triggers>
                         <EventTrigger RoutedEvent="MouseEnter">
