@@ -1,19 +1,17 @@
 ﻿using Easyyyyy.Models;
-using Newtonsoft.Json.Converters;
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 
 namespace Easyyyyy.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        private bool _isToggleMode;
+        private bool _isToggleMode = App.configApplication.isToggleMode;
         public bool isToggleMode
         {
             get => _isToggleMode;
@@ -37,7 +35,7 @@ namespace Easyyyyy.ViewModels
             }
         }
 
-        private bool _isDefaultClicks;
+        private bool _isDefaultClicks = App.configApplication.isDefaultClicks;
         public bool isDefaultClicks
         {
             get => _isDefaultClicks;
@@ -50,7 +48,7 @@ namespace Easyyyyy.ViewModels
             }
         }
 
-        private int _countCPS = 5;
+        private int _countCPS = App.configApplication.countCPS;
         public int countCPS
         {
             get => _countCPS;
@@ -63,7 +61,7 @@ namespace Easyyyyy.ViewModels
             }
         }
 
-        private bool _isEnabledRandom;
+        private bool _isEnabledRandom = App.configApplication.isEnabledRandom;
         public bool isEnabledRandom
         {
             get => _isEnabledRandom;
@@ -76,7 +74,7 @@ namespace Easyyyyy.ViewModels
             }
         }
 
-        private string _bindKey;
+        private string _bindKey = App.configApplication.bindKey;
         public string bindKey
         {
             get
@@ -97,7 +95,7 @@ namespace Easyyyyy.ViewModels
             }
         }
 
-        private int _intBindKey;
+        private int _intBindKey = App.configApplication.intBindKey;
         public int intBindKey
         {
             get => _intBindKey;
@@ -126,7 +124,7 @@ namespace Easyyyyy.ViewModels
             get => new RelayCommand(obj =>
             {
                 isToggleMode = !isToggleMode;
-            }); 
+            });
         }
 
         public RelayCommand toggleClicks
@@ -162,7 +160,7 @@ namespace Easyyyyy.ViewModels
                 {
                     var eventArgs = (MouseButtonEventArgs)obj;
                     if (eventArgs.ChangedButton == MouseButton.Left)
-                        if(Application.Current.MainWindow != null)
+                        if (Application.Current.MainWindow != null)
                             Application.Current.MainWindow.DragMove();
                 }
             });
@@ -181,7 +179,8 @@ namespace Easyyyyy.ViewModels
                     bindKey = binding.GetStringVirtualKey(eventArgs.Key);
 
                     isStateChangeBindingKey = false;
-                } else if (obj is MouseButtonEventArgs && isStateChangeBindingKey)
+                }
+                else if (obj is MouseButtonEventArgs && isStateChangeBindingKey)
                 {
                     var eventArgs = (MouseButtonEventArgs)obj;
                     var binding = new Core.Binding();
@@ -233,6 +232,14 @@ namespace Easyyyyy.ViewModels
             });
         }
 
+        public RelayCommand updateValues
+        {
+            get => new RelayCommand(obj =>
+            {
+                runAutoClicker();
+            });
+        }
+
         [DllImport("User32.dll")]
         public static extern bool GetAsyncKeyState(int vKey);
 
@@ -245,8 +252,6 @@ namespace Easyyyyy.ViewModels
             new Thread(() =>
             {
                 var mouse = new Core.Mouse();
-                isDefaultClicks = isDefaultClicks;
-                isToggleMode = isToggleMode;
 
                 while (true)
                 {
@@ -301,13 +306,17 @@ namespace Easyyyyy.ViewModels
                     Thread.Sleep(timeToWait);
                 }
 
-                Application.Current.Shutdown();
+                if (Application.Current != null)
+                {
+                    Application.Current.Shutdown();
+                }
             }).Start();
         }
 
         public MainViewModel()
         {
-            runAutoClicker();
+
         }
     }
 }
+

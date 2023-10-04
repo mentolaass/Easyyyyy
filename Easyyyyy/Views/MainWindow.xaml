@@ -2,10 +2,7 @@
     x:Class="Easyyyyy.Views.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:local="clr-namespace:Easyyyyy.Views"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:Easyyyyy.ViewModels"
     Title="Easyyyyy"
     Width="305"
@@ -16,8 +13,7 @@
     Icon="/Resources/Icons/logo.png"
     ResizeMode="CanMinimize"
     WindowStartupLocation="CenterScreen"
-    WindowStyle="None"
-    mc:Ignorable="d">
+    WindowStyle="None">
 
     <Window.DataContext>
         <vm:MainViewModel />
@@ -30,6 +26,10 @@
 
         <i:EventTrigger EventName="MouseDown">
             <i:InvokeCommandAction Command="{Binding changeBindKey}" PassEventArgsToCommand="True" />
+        </i:EventTrigger>
+
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding updateValues}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
@@ -558,12 +558,6 @@
                     Background="#050505"
                     Cursor="Hand">
 
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseLeftButtonDown">
-                            <i:InvokeCommandAction Command="{Binding toggleClicks}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-
                     <Border.Style>
                         <Style>
                             <Style.Triggers>
@@ -596,6 +590,12 @@
                             </Style.Triggers>
                         </Style>
                     </Border.Style>
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding toggleClicks}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
 
                     <Label
                         HorizontalContentAlignment="Center"

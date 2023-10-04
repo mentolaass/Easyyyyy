@@ -13,16 +13,9 @@ namespace Easyyyyy
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            loadConfig(); var MainWindow = new MainWindow();
-            MainWindow.DataContext = new MainViewModel()
-            {
-                intBindKey = configApplication.intBindKey,
-                bindKey = configApplication.bindKey,
-                isToggleMode = configApplication.isToggleMode,
-                isDefaultClicks = configApplication.isDefaultClicks,
-                countCPS = configApplication.countCPS,
-                isEnabledRandom = configApplication.isEnabledRandom,
-            };
+            loadConfig(); 
+
+            var MainWindow = new MainWindow();
             MainWindow.Show();
         }
 
