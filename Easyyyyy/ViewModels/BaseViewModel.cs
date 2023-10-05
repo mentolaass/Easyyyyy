@@ -14,10 +14,5 @@ namespace Easyyyyy.ViewModels
                 PropertyChanged(this, new PropertyChangedEventArgs(Property));
             }
         }
-
-        public void Close(Window window)
-        {
-            window.Close();
-        }
     }
 }
