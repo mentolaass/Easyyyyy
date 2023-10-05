@@ -1,6 +1,7 @@
 # Easyyyyy
 [![Current Version](https://img.shields.io/badge/version-1.0.1.1-blue.svg)](https://github.com/mentolaass/Easyyyyy)
-- An autoclicker written in NET Framework 4.8.
+
+An autoclicker written in NET Framework 4.8.
 
 ## Functional
 * Modes: Toggle, Hold
