@@ -12,5 +12,5 @@ An autoclicker written in NET Framework 4.8.
 ## Usage app
 You can use the program and source code however you want.
 
-# Screenshots
+## Screenshots
 ![Main view](https://i.imgur.com/edPkhrs.png)
