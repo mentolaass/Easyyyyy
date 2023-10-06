@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 
 namespace Easyyyyy.ViewModels
 {
@@ -24,6 +25,19 @@ namespace Easyyyyy.ViewModels
             }
         }
 
+        private bool _isLeftClick = App.configApplication.isLeftClick;
+        public bool isLeftClick
+        {
+            get => _isLeftClick;
+            set
+            {
+                _isLeftClick = value;
+                onPropertyChanged(nameof(isLeftClick));
+                App.configApplication.isLeftClick = value;
+                App.updateConfig();
+            }
+        }
+
         private bool _isEnabled;
         public bool isEnabled
         {
@@ -32,6 +46,8 @@ namespace Easyyyyy.ViewModels
             {
                 _isEnabled = value;
                 onPropertyChanged(nameof(isEnabled));
+
+                statusText = value ? "ON" : "OFF";
             }
         }
 
@@ -71,6 +87,17 @@ namespace Easyyyyy.ViewModels
                 onPropertyChanged(nameof(isEnabledRandom));
                 App.configApplication.isEnabledRandom = value;
                 App.updateConfig();
+            }
+        }
+
+        private string _statusText = "OFF";
+        public string statusText
+        {
+            get => _statusText;
+            set
+            {
+                _statusText = value;
+                onPropertyChanged(nameof(statusText));
             }
         }
 
@@ -185,15 +212,11 @@ namespace Easyyyyy.ViewModels
                     var eventArgs = (MouseButtonEventArgs)obj;
                     var binding = new Core.Binding();
 
-                    if (eventArgs.ChangedButton == MouseButton.Left)
+                    if (eventArgs.ChangedButton == MouseButton.Left || eventArgs.ChangedButton == MouseButton.Right)
                         return;
 
                     switch (eventArgs.ChangedButton)
                     {
-                        case MouseButton.Right:
-                            bindKey = "MRight";
-                            intBindKey = 0x02;
-                            break;
                         case MouseButton.Middle:
                             bindKey = "MMiddle";
                             intBindKey = 0x04;
@@ -210,6 +233,14 @@ namespace Easyyyyy.ViewModels
 
                     isStateChangeBindingKey = false;
                 }
+            });
+        }
+
+        public RelayCommand toggleLeftClick
+        {
+            get => new RelayCommand(obj =>
+            {
+                isLeftClick = !isLeftClick;
             });
         }
 
@@ -265,11 +296,11 @@ namespace Easyyyyy.ViewModels
                             // if double click
                             if (isDefaultClicks)
                             {
-                                mouse.oneLeftClick();
+                                mouse.oneClick(isLeftClick);
                             }
                             else
                             {
-                                mouse.doubleLeftClick();
+                                mouse.doubleClick(isLeftClick);
                             }
                         }
                     }
@@ -282,11 +313,11 @@ namespace Easyyyyy.ViewModels
                             // if double click
                             if (isDefaultClicks)
                             {
-                                mouse.oneLeftClick();
+                                mouse.oneClick(isLeftClick);
                             }
                             else
                             {
-                                mouse.doubleLeftClick();
+                                mouse.doubleClick(isLeftClick);
                             }
                         }
                         else

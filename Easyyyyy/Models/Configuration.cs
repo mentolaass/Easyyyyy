@@ -10,6 +10,9 @@ namespace Easyyyyy.Models
         [JsonProperty("default_clicks")]
         public bool isDefaultClicks { get; set; }
 
+        [JsonProperty("is_left_click")]
+        public bool isLeftClick { get; set; }
+
         [JsonProperty("count_cps")]
         public int countCPS { get; set; }
 

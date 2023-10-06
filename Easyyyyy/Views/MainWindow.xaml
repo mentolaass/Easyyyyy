@@ -229,6 +229,120 @@
                 </Border>
 
                 <Border
+                    Canvas.Left="204"
+                    Canvas.Top="73"
+                    Width="90"
+                    Height="26"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Background="#050505"
+                    Cursor="Hand">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding toggleLeftClick}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                    <Border.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding isLeftClick, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation
+                                                    FillBehavior="HoldEnd"
+                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                    From="#050505"
+                                                    To="#0077ff"
+                                                    Duration="0:0:0:0.2" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                    <DataTrigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation
+                                                    FillBehavior="HoldEnd"
+                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                    From="#0077ff"
+                                                    To="#050505"
+                                                    Duration="0:0:0:0.2" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.ExitActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+
+                    <Label
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Content="LEFT"
+                        Foreground="White" />
+
+                </Border>
+
+                <Border
+                    Canvas.Left="204"
+                    Canvas.Top="42"
+                    Width="91"
+                    Height="26"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Background="#050505"
+                    Cursor="Hand">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding toggleLeftClick}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                    <Border.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding isLeftClick, UpdateSourceTrigger=PropertyChanged}" Value="False">
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation
+                                                    FillBehavior="HoldEnd"
+                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                    From="#050505"
+                                                    To="#0077ff"
+                                                    Duration="0:0:0:0.2" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                    <DataTrigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation
+                                                    FillBehavior="HoldEnd"
+                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                    From="#0077ff"
+                                                    To="#050505"
+                                                    Duration="0:0:0:0.2" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.ExitActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+
+                    <Label
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Content="RIGHT"
+                        Foreground="White" />
+
+                </Border>
+
+                <Border
                     Canvas.Left="10"
                     Canvas.Top="134"
                     Width="91"
@@ -343,53 +457,109 @@
                 </Border>
 
                 <Border
-                    Canvas.Left="230"
-                    Canvas.Top="10"
-                    Width="30"
+                    Canvas.Left="107"
+                    Canvas.Top="160"
+                    Width="62"
                     Height="30"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     Background="#050505">
 
-                    <Border
-                        Margin="10,10,10,10"
-                        Background="#555555"
-                        CornerRadius="20">
+                    <Canvas>
 
-                        <Border.Style>
-                            <Style>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding isEnabled, UpdateSourceTrigger=PropertyChanged}" Value="True">
-                                        <DataTrigger.EnterActions>
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <ColorAnimation
-                                                        FillBehavior="HoldEnd"
-                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        From="#555555"
-                                                        To="#008c31"
-                                                        Duration="0:0:0:0.2" />
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </DataTrigger.EnterActions>
-                                        <DataTrigger.ExitActions>
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <ColorAnimation
-                                                        FillBehavior="HoldEnd"
-                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                        From="#008c31"
-                                                        To="#555555"
-                                                        Duration="0:0:0:0.2" />
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </DataTrigger.ExitActions>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Border.Style>
+                        <Label
+                            Canvas.Left="5"
+                            Width="52"
+                            Height="30"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Right"
+                            VerticalContentAlignment="Center"
+                            Content="{Binding statusText, UpdateSourceTrigger=PropertyChanged}"
+                            FontSize="12"
+                            Foreground="#555555">
 
-                    </Border>
+                            <Label.Style>
+                                <Style TargetType="Label">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding isEnabled, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                            <DataTrigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation
+                                                            FillBehavior="HoldEnd"
+                                                            Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)"
+                                                            From="#555555"
+                                                            To="#008c31"
+                                                            Duration="0:0:0:0.2" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </DataTrigger.EnterActions>
+                                            <DataTrigger.ExitActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation
+                                                            FillBehavior="HoldEnd"
+                                                            Storyboard.TargetProperty="(Label.Foreground).(SolidColorBrush.Color)"
+                                                            From="#008c31"
+                                                            To="#555555"
+                                                            Duration="0:0:0:0.2" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </DataTrigger.ExitActions>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Label.Style>
+
+                        </Label>
+
+                        <Border
+                            Canvas.Left="10"
+                            Canvas.Top="12"
+                            Width="6"
+                            Height="6"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Background="#555555"
+                            CornerRadius="20">
+
+                            <Border.Style>
+                                <Style>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding isEnabled, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                            <DataTrigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation
+                                                            FillBehavior="HoldEnd"
+                                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                            From="#555555"
+                                                            To="#008c31"
+                                                            Duration="0:0:0:0.2" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </DataTrigger.EnterActions>
+                                            <DataTrigger.ExitActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <ColorAnimation
+                                                            FillBehavior="HoldEnd"
+                                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                            From="#008c31"
+                                                            To="#555555"
+                                                            Duration="0:0:0:0.2" />
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </DataTrigger.ExitActions>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+
+                        </Border>
+
+                    </Canvas>
 
                 </Border>
 
@@ -488,21 +658,21 @@
                 </Border>
 
                 <Label
-                    Canvas.Left="133"
+                    Canvas.Left="101"
                     Canvas.Top="109"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    Content="Bind"
+                    Content="Bind and status"
                     FontSize="12"
                     Foreground="Gray" />
 
                 <Border
-                    Canvas.Left="265"
-                    Canvas.Top="10"
+                    Canvas.Left="169"
+                    Canvas.Top="160"
                     Width="30"
                     Height="30"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
+                    VerticalAlignment="Top"
                     Background="#050505"
                     CornerRadius="1"
                     Cursor="Hand">
@@ -684,7 +854,7 @@
                     Canvas.Left="10"
                     Canvas.Top="10"
                     HorizontalAlignment="Center"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Center"
                     Content="Main Settings"
                     FontSize="14"
                     Foreground="Gray" />
@@ -708,14 +878,11 @@
                     Foreground="Gray" />
 
                 <Label
-                    Canvas.Left="107"
-                    Canvas.Top="161"
-                    Width="91"
+                    Canvas.Left="208"
+                    Canvas.Top="17"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
-                    HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    Content="{Binding intBindKey, UpdateSourceTrigger=PropertyChanged}"
+                    Content="Mouse Click"
                     FontSize="12"
                     Foreground="Gray" />
 

@@ -40,20 +40,36 @@ namespace Easyyyyy.Core
             return lpPoint;
         }
 
-        public void oneLeftClick()
+        public void oneClick(bool isLeftClick)
         {
             var cursorPosition = GetCursorPosition();
-            mouse_event(MouseEvent.MOUSEEVENTF_LEFTDOWN, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
-            mouse_event(MouseEvent.MOUSEEVENTF_LEFTUP, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
+            
+            if (isLeftClick)
+            {
+                mouse_event(MouseEvent.MOUSEEVENTF_LEFTDOWN, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
+                mouse_event(MouseEvent.MOUSEEVENTF_LEFTUP, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
+            } else
+            {
+                mouse_event(MouseEvent.MOUSEEVENTF_RIGHTDOWN, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
+                mouse_event(MouseEvent.MOUSEEVENTF_RIGHTUP, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
+            }
         }
 
-        public void doubleLeftClick()
+        public void doubleClick(bool isLeftClick)
         {
             for (int x = 0; x != 2; x++)
             {
                 var cursorPosition = GetCursorPosition();
-                mouse_event(MouseEvent.MOUSEEVENTF_LEFTDOWN, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
-                mouse_event(MouseEvent.MOUSEEVENTF_LEFTUP, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
+                
+                if (isLeftClick)
+                {
+                    mouse_event(MouseEvent.MOUSEEVENTF_LEFTDOWN, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
+                    mouse_event(MouseEvent.MOUSEEVENTF_LEFTUP, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
+                } else
+                {
+                    mouse_event(MouseEvent.MOUSEEVENTF_RIGHTDOWN, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
+                    mouse_event(MouseEvent.MOUSEEVENTF_RIGHTUP, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
+                }
             }
         }
     }

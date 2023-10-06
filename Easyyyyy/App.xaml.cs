@@ -1,5 +1,4 @@
 ﻿using Easyyyyy.Models;
-using Easyyyyy.ViewModels;
 using Easyyyyy.Views;
 using Newtonsoft.Json.Linq;
 using System.IO;
@@ -39,6 +38,7 @@ namespace Easyyyyy
                     new JProperty("count_cps", 7),
                     new JProperty("enabled_random", true),
                     new JProperty("bind_key", null),
+                    new JProperty("is_left_click", true),
                     new JProperty("int_bind_key", 0));
 
                 File.WriteAllText(configLocation, config.ToString());
@@ -47,6 +47,7 @@ namespace Easyyyyy
             using (var reader = new StreamReader(configLocation))
             {
                 configApplication = Newtonsoft.Json.JsonConvert.DeserializeObject<Configuration>(reader.ReadToEnd());
+
                 reader.Dispose();
                 reader.Close();
             }
@@ -61,12 +62,13 @@ namespace Easyyyyy
             
             // add json
             JObject config = new JObject(
-            new JProperty("toggle_mode", configApplication.isToggleMode),
-            new JProperty("default_clicks", configApplication.isDefaultClicks),
-            new JProperty("count_cps", configApplication.countCPS),
-            new JProperty("enabled_random", configApplication.isEnabledRandom),
-            new JProperty("bind_key", configApplication.bindKey),
-            new JProperty("int_bind_key", configApplication.intBindKey));
+                new JProperty("toggle_mode", configApplication.isToggleMode),
+                new JProperty("default_clicks", configApplication.isDefaultClicks),
+                new JProperty("count_cps", configApplication.countCPS),
+                new JProperty("enabled_random", configApplication.isEnabledRandom),
+                new JProperty("bind_key", configApplication.bindKey),
+                new JProperty("is_left_click", configApplication.isLeftClick),
+                new JProperty("int_bind_key", configApplication.intBindKey));
 
             File.WriteAllText(configLocation, config.ToString());
         }
