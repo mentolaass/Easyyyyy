@@ -287,6 +287,10 @@ namespace Easyyyyy.ViewModels
 
                 while (true)
                 {
+                    int timeToWait = 0;
+                    if (isEnabledRandom && countCPS > 5) timeToWait = (1000 / new Random().Next(countCPS - ((countCPS / 100) * 25), countCPS));
+                    else timeToWait = (1000 / countCPS);
+
                     if (isToggleMode)
                     {
                         isEnabled = isToggleEnabled;
@@ -302,6 +306,8 @@ namespace Easyyyyy.ViewModels
                             {
                                 mouse.doubleClick(isLeftClick);
                             }
+
+                            Thread.Sleep(timeToWait);
                         }
                     }
                     else
@@ -319,6 +325,8 @@ namespace Easyyyyy.ViewModels
                             {
                                 mouse.doubleClick(isLeftClick);
                             }
+
+                            Thread.Sleep(timeToWait);
                         }
                         else
                         {
@@ -331,11 +339,7 @@ namespace Easyyyyy.ViewModels
                         break;
                     }
 
-                    int timeToWait = 0;
-                    if (!isEnabledRandom) timeToWait = 1000 / countCPS;
-                    else if (countCPS > 5) timeToWait = 1000 / new Random().Next(countCPS - ((countCPS / 100) * 20), countCPS);
-
-                    Thread.Sleep(timeToWait);
+                    Thread.Sleep(1);
                 }
 
                 if (Application.Current != null)
@@ -355,7 +359,7 @@ namespace Easyyyyy.ViewModels
                     {
                         isToggleEnabled = !isToggleEnabled;
                         // delay
-                        Thread.Sleep(250);
+                        Thread.Sleep(150);
                     }
 
                     if (isStopped)

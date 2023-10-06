@@ -1,6 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using System.Windows;
+﻿using System.Runtime.InteropServices;
 
 namespace Easyyyyy.Core
 {
@@ -17,41 +15,16 @@ namespace Easyyyyy.Core
             MOUSEEVENTF_RIGHTUP = 0x10,
         }
 
-        [StructLayout(LayoutKind.Sequential)]
-        public struct POINT
-        {
-            public int X;
-            public int Y;
-
-            public static implicit operator Point(POINT point)
-            {
-                return new Point(point.X, point.Y);
-            }
-        }
-
-        [DllImport("user32.dll")]
-        public static extern bool GetCursorPos(out POINT lpPoint);
-
-        public static Point GetCursorPosition()
-        {
-            POINT lpPoint;
-            GetCursorPos(out lpPoint);
-
-            return lpPoint;
-        }
-
         public void oneClick(bool isLeftClick)
         {
-            var cursorPosition = GetCursorPosition();
-            
             if (isLeftClick)
             {
-                mouse_event(MouseEvent.MOUSEEVENTF_LEFTDOWN, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
-                mouse_event(MouseEvent.MOUSEEVENTF_LEFTUP, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
+                mouse_event(MouseEvent.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+                mouse_event(MouseEvent.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
             } else
             {
-                mouse_event(MouseEvent.MOUSEEVENTF_RIGHTDOWN, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
-                mouse_event(MouseEvent.MOUSEEVENTF_RIGHTUP, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
+                mouse_event(MouseEvent.MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
+                mouse_event(MouseEvent.MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
             }
         }
 
@@ -59,16 +32,14 @@ namespace Easyyyyy.Core
         {
             for (int x = 0; x != 2; x++)
             {
-                var cursorPosition = GetCursorPosition();
-                
                 if (isLeftClick)
                 {
-                    mouse_event(MouseEvent.MOUSEEVENTF_LEFTDOWN, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
-                    mouse_event(MouseEvent.MOUSEEVENTF_LEFTUP, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
+                    mouse_event(MouseEvent.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+                    mouse_event(MouseEvent.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
                 } else
                 {
-                    mouse_event(MouseEvent.MOUSEEVENTF_RIGHTDOWN, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
-                    mouse_event(MouseEvent.MOUSEEVENTF_RIGHTUP, Convert.ToInt32(cursorPosition.X), Convert.ToInt32(cursorPosition.Y), 0, 0);
+                    mouse_event(MouseEvent.MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
+                    mouse_event(MouseEvent.MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
                 }
             }
         }
