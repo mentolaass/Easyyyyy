@@ -1,12 +1,9 @@
-﻿using Easyyyyy.Models;
-using System;
+﻿using Easyyyyy.Core;
+using Easyyyyy.Models;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media.Animation;
 
 namespace Easyyyyy.ViewModels
 {
@@ -263,82 +260,43 @@ namespace Easyyyyy.ViewModels
             });
         }
 
-        public RelayCommand updateValues
+        public RelayCommand startLoops
         {
             get => new RelayCommand(obj =>
             {
-                eToggleMode();
-                runAutoClicker();
+                loopToggleMode();
+                loopAutoClick();
             });
         }
 
-        [DllImport("User32.dll")]
-        public static extern bool GetAsyncKeyState(int vKey);
 
         private bool isStopped = false;
 
         private bool isToggleEnabled = false;
 
-        private void runAutoClicker()
+        private void loopAutoClick()
         {
             new Thread(() =>
             {
-                var mouse = new Core.Mouse();
-
                 while (true)
                 {
-                    int timeToWait = 0;
-                    if (isEnabledRandom && countCPS > 5) timeToWait = (1000 / new Random().Next(countCPS - ((countCPS / 100) * 25), countCPS));
-                    else timeToWait = (1000 / countCPS);
-
-                    if (isToggleMode)
-                    {
-                        isEnabled = isToggleEnabled;
-
-                        if (isToggleEnabled)
-                        {
-                            // if double click
-                            if (isDefaultClicks)
-                            {
-                                mouse.oneClick(isLeftClick);
-                            }
-                            else
-                            {
-                                mouse.doubleClick(isLeftClick);
-                            }
-
-                            Thread.Sleep(timeToWait);
-                        }
-                    }
-                    else
-                    {
-                        if (GetAsyncKeyState(intBindKey))
-                        {
-                            isEnabled = true;
-
-                            // if double click
-                            if (isDefaultClicks)
-                            {
-                                mouse.oneClick(isLeftClick);
-                            }
-                            else
-                            {
-                                mouse.doubleClick(isLeftClick);
-                            }
-
-                            Thread.Sleep(timeToWait);
-                        }
-                        else
-                        {
-                            isEnabled = false;
-                        }
-                    }
-
                     if (isStopped)
-                    {
                         break;
+
+                    if (Win32.GetAsyncKeyState(intBindKey))
+                    {
+                        Click.execClick(countCPS, isEnabledRandom, isToggleEnabled, isLeftClick, isDefaultClicks, isToggleMode);
+                        isEnabled = true;
+                    } else if (isToggleEnabled)
+                    {
+                        Click.execClick(countCPS, isEnabledRandom, isToggleEnabled, isLeftClick, isDefaultClicks, isToggleMode);
+                        isEnabled = true;
+                    } else
+                    {
+                        isEnabled = false;
                     }
 
+                    
                     Thread.Sleep(1);
                 }
 
@@ -349,25 +307,23 @@ namespace Easyyyyy.ViewModels
             }).Start();
         }
 
-        private void eToggleMode()
+        private void loopToggleMode()
         {
             new Thread(() =>
             {
-                while(true)
+                while (true)
                 {
-                    if (isToggleMode && GetAsyncKeyState(intBindKey))
+                    if (isToggleMode && Win32.GetAsyncKeyState(intBindKey))
                     {
                         isToggleEnabled = !isToggleEnabled;
                         // delay
-                        Thread.Sleep(150);
+                        Thread.Sleep(500);
                     }
 
                     if (isStopped)
-                    {
                         break;
-                    }
 
-                    Thread.Sleep(1);
+                    Thread.Sleep(5);
                 }
             }).Start();
         }

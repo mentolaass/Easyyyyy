@@ -232,7 +232,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\Binding.cs" />
+    <Compile Include="Core\Click.cs" />
     <Compile Include="Core\Mouse.cs" />
+    <Compile Include="Core\Win32.cs" />
     <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\RelayCommand.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />

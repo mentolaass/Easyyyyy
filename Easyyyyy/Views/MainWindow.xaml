@@ -29,7 +29,7 @@
         </i:EventTrigger>
 
         <i:EventTrigger EventName="Loaded">
-            <i:InvokeCommandAction Command="{Binding updateValues}" />
+            <i:InvokeCommandAction Command="{Binding startLoops}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
