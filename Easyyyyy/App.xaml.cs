@@ -12,9 +12,13 @@ namespace Easyyyyy
 
         private void Application_Startup(object sender, StartupEventArgs e)
         {
-            loadConfig(); 
+            loadConfig(); var MainWindow = new MainWindow();
 
-            var MainWindow = new MainWindow();
+            MainWindow.Closed += (s, e_) =>
+            {
+                Application.Current.Shutdown();
+            };
+
             MainWindow.Show();
         }
 

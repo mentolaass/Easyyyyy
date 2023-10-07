@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace Easyyyyy.ViewModels
 {
@@ -295,14 +296,8 @@ namespace Easyyyyy.ViewModels
                     {
                         isEnabled = false;
                     }
-
                     
                     Thread.Sleep(1);
-                }
-
-                if (Application.Current != null)
-                {
-                    Application.Current.Shutdown();
                 }
             }).Start();
         }
