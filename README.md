@@ -1,5 +1,5 @@
 # Easyyyyy
-[![Current Version](https://img.shields.io/badge/version-1.0.2.4-blue.svg)](https://github.com/mentolaass/Easyyyyy)
+[![Current Version](https://img.shields.io/badge/version-1.0.3.0-blue.svg)](https://github.com/mentolaass/Easyyyyy)
 
 An autoclicker written in NET Framework 4.8.
 
