@@ -8,12 +8,10 @@ namespace Easyyyyy.Core
         {
             if (isLeftClick)
             {
-                mouse_event(MouseEvent.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
-                mouse_event(MouseEvent.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+                mouse_event(MouseEvent.MOUSEEVENTF_LEFTDOWN | MouseEvent.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
             } else
             {
-                mouse_event(MouseEvent.MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
-                mouse_event(MouseEvent.MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
+                mouse_event(MouseEvent.MOUSEEVENTF_RIGHTDOWN | MouseEvent.MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
             }
         }
 
@@ -23,12 +21,10 @@ namespace Easyyyyy.Core
             {
                 if (isLeftClick)
                 {
-                    mouse_event(MouseEvent.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
-                    mouse_event(MouseEvent.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+                    mouse_event(MouseEvent.MOUSEEVENTF_LEFTDOWN | MouseEvent.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
                 } else
                 {
-                    mouse_event(MouseEvent.MOUSEEVENTF_RIGHTDOWN, 0, 0, 0, 0);
-                    mouse_event(MouseEvent.MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
+                    mouse_event(MouseEvent.MOUSEEVENTF_RIGHTDOWN | MouseEvent.MOUSEEVENTF_RIGHTUP, 0, 0, 0, 0);
                 }
             }
         }

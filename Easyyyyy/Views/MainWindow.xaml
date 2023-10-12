@@ -63,6 +63,14 @@
                         FontSize="13"
                         Foreground="#0077ff"
                         Text="Autoclicker" />
+                    <Run
+                        FontSize="13"
+                        Foreground="White"
+                        Text="-" />
+                    <Run
+                        FontSize="13"
+                        Foreground="#0077ff"
+                        Text="{Binding currentClicks, UpdateSourceTrigger=PropertyChanged}" />
                 </TextBlock>
 
                 <Border

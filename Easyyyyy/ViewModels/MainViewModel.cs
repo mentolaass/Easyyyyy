@@ -1,5 +1,6 @@
 ﻿using Easyyyyy.Core;
 using Easyyyyy.Models;
+using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows;
@@ -72,6 +73,28 @@ namespace Easyyyyy.ViewModels
                 onPropertyChanged(nameof(countCPS));
                 App.configApplication.countCPS = value;
                 App.updateConfig();
+            }
+        }
+
+        private int _currentClicks = 0;
+        public int currentClicks
+        {
+            get => _currentClicks;
+            set
+            {
+                _currentClicks = value;
+                onPropertyChanged(nameof(currentClicks));
+            }
+        }
+
+        private int _totalClicks = 0;
+        public int totalClicks
+        {
+            get => _totalClicks;
+            set
+            {
+                _totalClicks = value;
+                onPropertyChanged(nameof(totalClicks));
             }
         }
 
@@ -267,6 +290,7 @@ namespace Easyyyyy.ViewModels
             {
                 loopToggleMode();
                 loopAutoClick();
+                loopCounterCPS();
             });
         }
 
@@ -284,9 +308,10 @@ namespace Easyyyyy.ViewModels
                     if (isStopped)
                         break;
 
-                    if (Native.GetAsyncKeyState(intBindKey) || isToggleEnabled)
+                    if (Native.GetAsyncKeyState((uint)intBindKey) || isToggleEnabled)
                     {
                         Click.execClick(countCPS, isEnabledRandom, isToggleEnabled, isLeftClick, isDefaultClicks, isToggleMode);
+                        totalClicks += isDefaultClicks ? 1 : 2;
                         isEnabled = true;
                     } else
                     {
@@ -304,17 +329,34 @@ namespace Easyyyyy.ViewModels
             {
                 while (true)
                 {
-                    if (isToggleMode && Native.GetAsyncKeyState(intBindKey))
+                    if (isToggleMode && Native.GetAsyncKeyState((uint)intBindKey))
                     {
                         isToggleEnabled = !isToggleEnabled;
                         // delay
-                        Thread.Sleep(500);
+                        Thread.Sleep(250);
                     }
 
                     if (isStopped)
                         break;
 
                     Thread.Sleep(5);
+                }
+            }).Start();
+        }
+
+        private void loopCounterCPS()
+        {
+            new Thread(() =>
+            {
+                while (true)
+                {
+                    currentClicks = totalClicks - currentClicks;
+                    totalClicks = currentClicks;
+
+                    if (isStopped)
+                        break;
+
+                    Thread.Sleep(1000);
                 }
             }).Start();
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Windows.Media.Animation;
 
 namespace Easyyyyy.Core
 {
@@ -9,7 +10,7 @@ namespace Easyyyyy.Core
         public static void execClick(int countCPS, bool isEnabledRandom, bool isToggleEnabled, bool isLeftClick, bool isDefaultClicks, bool isToggleMode)
         {
             int timeToWait = 0;
-            if (isEnabledRandom && countCPS > 5) timeToWait = (1000 / new Random().Next(countCPS - ((countCPS / 100) * 50), countCPS));
+            if (isEnabledRandom && countCPS > 5) timeToWait = (1000 / new Random().Next(countCPS - ((countCPS / 100) * 20), countCPS));
             else timeToWait = (1000 / countCPS);
 
             var mouse = new Core.Mouse();

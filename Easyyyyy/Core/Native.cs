@@ -5,9 +5,9 @@ namespace Easyyyyy.Core
     public class Native
     {
         [DllImport("User32.dll")]
-        public static extern bool GetAsyncKeyState(int vKey);
+        public static extern bool GetAsyncKeyState(uint vKey);
 
-        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        [DllImport("user32.dll")]
         public static extern void mouse_event(MouseEvent dwFlags, uint dx, uint dy, uint cButtons, uint dwExtraInfo);
 
         public enum MouseEvent
