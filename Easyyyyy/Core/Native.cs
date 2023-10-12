@@ -2,7 +2,7 @@
 
 namespace Easyyyyy.Core
 {
-    public class Win32
+    public class Native
     {
         [DllImport("User32.dll")]
         public static extern bool GetAsyncKeyState(int vKey);

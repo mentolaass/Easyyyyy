@@ -2,7 +2,7 @@
 
 namespace Easyyyyy.Core
 {
-    public class Mouse : Win32
+    public class Mouse : Native
     {
         public void oneClick(bool isLeftClick)
         {

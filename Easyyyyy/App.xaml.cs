@@ -22,7 +22,7 @@ namespace Easyyyyy
             MainWindow.Show();
         }
 
-        private string dirLocation = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\Easyyyyy";
+        private static string dirLocation = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\Easyyyyy";
         private static string configLocation = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) + "\\Easyyyyy\\config.json";
         private void loadConfig()
         {
@@ -59,6 +59,11 @@ namespace Easyyyyy
 
         public static void updateConfig()
         {
+            if (!Directory.Exists(dirLocation))
+            {
+                Directory.CreateDirectory(dirLocation);
+            }
+
             if (!File.Exists(configLocation))
             {
                 File.Create(configLocation).Close();

@@ -284,11 +284,7 @@ namespace Easyyyyy.ViewModels
                     if (isStopped)
                         break;
 
-                    if (Win32.GetAsyncKeyState(intBindKey))
-                    {
-                        Click.execClick(countCPS, isEnabledRandom, isToggleEnabled, isLeftClick, isDefaultClicks, isToggleMode);
-                        isEnabled = true;
-                    } else if (isToggleEnabled)
+                    if (Native.GetAsyncKeyState(intBindKey) || isToggleEnabled)
                     {
                         Click.execClick(countCPS, isEnabledRandom, isToggleEnabled, isLeftClick, isDefaultClicks, isToggleMode);
                         isEnabled = true;
@@ -308,7 +304,7 @@ namespace Easyyyyy.ViewModels
             {
                 while (true)
                 {
-                    if (isToggleMode && Win32.GetAsyncKeyState(intBindKey))
+                    if (isToggleMode && Native.GetAsyncKeyState(intBindKey))
                     {
                         isToggleEnabled = !isToggleEnabled;
                         // delay
